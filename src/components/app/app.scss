@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=League+Spartan:wght@400;500;600;700&family=Nunito:wght@300;700&display=swap');
 
 body {
-  background-color: #b9540c;
+  background-color: #090909;
   overflow: hidden;
   font-family: 'Lato', sans-serif;
   font-weight: 'regular';
@@ -27,7 +27,7 @@ body {
 .character__card {
   position: relative;
   border: none;
-  background-color: #331c0e;
+  background-color: #0e1733;
   color: #fff;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
@@ -51,11 +51,11 @@ body {
 .character:nth-child(even) .character__overlay {
   top: 100%;
 }
-.character:hover .character__overlay {
+/* .character:hover .character__overlay {
   opacity: 1;
   pointer-events: all;
   top: 0;
-}
+} */
 .character__actions {
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@ body {
   height: 90px;
 }
 .character__action {
-  background-color: #67331e;
+  background-color: #0e1733;
   color: #fff;
   width: 80%;
 }

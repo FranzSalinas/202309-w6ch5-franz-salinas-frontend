@@ -7,6 +7,8 @@ import {
   loadFootballersThunk,
   /* updateFootballersThunk, */
 } from '../slice/thunks';
+import { Footballers } from '../model/footballers';
+import { setCurrentFootballer } from '../slice/slice';
 /* import { Footballers } from '../model/footballers'; */
 
 export function useFootballers() {
@@ -25,6 +27,10 @@ export function useFootballers() {
     }
   }, [dispatch, repo]);
 
+  const handleDetailsPage = async (footballer: Footballers) => {
+    dispatch(setCurrentFootballer(footballer));
+  };
+
   /*  const update = async (
     id: Footballers['id'],
     updatedFootballer: Partial<Footballers>
@@ -39,6 +45,7 @@ export function useFootballers() {
   return {
     loadFootballers,
     footballers,
+    handleDetailsPage,
     /*  update, */
   };
 }
