@@ -5,17 +5,27 @@ import { Footballers } from '../model/footballers';
 type FootballersState = {
   footballers: Footballers[];
   footballerInitialState: 'idle' | 'loading' | 'error';
+  currentFootballer: Footballers | null;
 };
 
 const initialState: FootballersState = {
   footballers: [],
   footballerInitialState: 'idle',
+  currentFootballer: null,
 };
 
 const footballersSlice = createSlice({
   name: 'footballer',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentFootballer: (
+      state: FootballersState,
+      { payload }: PayloadAction<Footballers | null>
+    ) => {
+      state.currentFootballer = payload;
+      return state;
+    },
+  },
 
   extraReducers: (builder) => {
     builder.addCase(
@@ -68,3 +78,4 @@ const footballersSlice = createSlice({
 });
 
 export default footballersSlice.reducer;
+export const { setCurrentFootballer } = footballersSlice.actions;

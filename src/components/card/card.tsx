@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import { useFootballers } from '../../hooks/use.characters';
 import { Footballers } from '../../model/footballers';
 
 type Props = {
@@ -5,34 +7,39 @@ type Props = {
 };
 
 export function Card({ info }: Props) {
-  /* const { update } = useFootballers();
+  /* Sera el update más adelante const { update } = useFootballers();
 
   const handleDeath = (id: string) => {
     update(id, { isAlive: false });
   }; */
 
+  const { handleDetailsPage } = useFootballers();
+
   return (
     <li className="character col">
       <div className="card character__card">
-        <img
-          src={`${info.image}`}
-          alt={info.name + ' '}
-          className={`character__picture ${!info.age && 'card-img-top'}`}
-        />
+        <Link to={'/details/' + info.id}>
+          <img
+            src={`${info.image}`}
+            alt={info.name + ' '}
+            onClick={() => handleDetailsPage(info)}
+            className={`character__picture ${!info.age && 'card-img-top'}`}
+          />
+        </Link>
         <div className="card-body">
           <h2 className="character__name card-title h4">{info.name}</h2>
           <div className="character__info">
             <ul className="list-unstyled">
-              <li>Edad: {info.age} años</li>
+              <li>Age: {info.age} años</li>
               <li>
-                Equipo:
+                Team:
                 {' ' + info.team}
               </li>
             </ul>
           </div>
           <div className="character__overlay">
             <div className="character__actions">
-              <button className="character__action btn">Detalles</button>
+              {/* <button className="character__action btn">Detalles</button> */}
               {/*  <button
                 className="character__action btn"
                 onClick={() => handleDeath(info.id as string)}
