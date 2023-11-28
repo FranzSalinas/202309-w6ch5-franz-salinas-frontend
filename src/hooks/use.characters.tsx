@@ -15,7 +15,7 @@ import { LoginUser, User } from '../model/user';
 
 export function useUsers() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { token } = useSelector((state: RootState) => state.userState);
+  /*   const { token } = useSelector((state: RootState) => state.userState); */
 
   const dispacht = useDispatch<AppDispatch>();
   const repo = new ApiRepo();
