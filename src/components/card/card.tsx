@@ -14,13 +14,13 @@ export function Card({ info }: Props) {
   }; */
 
   const { handleDetailsPage } = useFootballers();
-
+  console.log('IMG', info);
   return (
     <li className="character col">
       <div className="card character__card">
         <Link to={'/details/' + info.id}>
           <img
-            src={`${info.imgFootballer.url}`}
+            src={info.imageFootballer.url}
             alt={info.name + ' '}
             onClick={() => handleDetailsPage(info)}
             className={`character__picture ${!info.age && 'card-img-top'}`}

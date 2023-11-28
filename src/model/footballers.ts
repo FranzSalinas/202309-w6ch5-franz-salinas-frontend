@@ -8,6 +8,6 @@ export type Footballers = {
   preferredFoot: string;
   image: string;
   nationality: string;
-  imgFootballer: ImgData;
+  imageFootballer: ImgData;
   age: number;
 };
