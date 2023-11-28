@@ -5,11 +5,42 @@ import { useCallback, useMemo } from 'react';
 
 import {
   loadFootballersThunk,
+  logginUserThunk,
   /* updateFootballersThunk, */
 } from '../slice/thunks';
 import { Footballers } from '../model/footballers';
-import { setCurrentFootballer } from '../slice/slice';
+import { logout, setCurrentFootballer } from '../slice/slice';
+import { LoginUser, User } from '../model/user';
 /* import { Footballers } from '../model/footballers'; */
+
+export function useUsers() {
+  const { token } = useSelector((state: RootState) => {
+    state.userState;
+  });
+  const dispacht = useDispatch<AppDispatch>();
+  const repo = new ApiRepo();
+  const makeLogOut = () => {
+    dispacht(logout());
+  };
+
+  const register = (newUser: Partial<User>) => {
+    repo.registerUser(newUser);
+  };
+
+  const loginWithToken = (token: string) => {
+    dispacht(loginTokenThunk({ token, repo }));
+  };
+
+  const login = (loginUser: LoginUser) => {
+    dispacht(logginUserThunk({ loginUser, repo }));
+  };
+
+  return {
+    makeLogOut,
+    login,
+    register,
+  };
+}
 
 export function useFootballers() {
   const { footballers } = useSelector(

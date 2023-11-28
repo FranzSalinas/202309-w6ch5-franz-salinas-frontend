@@ -1,3 +1,5 @@
+import { ImgData } from './img.data';
+
 export type Footballers = {
   id: number;
   name: string;
@@ -6,5 +8,6 @@ export type Footballers = {
   preferredFoot: string;
   image: string;
   nationality: string;
+  imgFootballer: ImgData;
   age: number;
 };
