@@ -2,25 +2,26 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { ApiRepo } from '../services/api.repo';
 import { useCallback, useMemo } from 'react';
+import { ac } from '../slice/users.slice';
 
 import {
   loadFootballersThunk,
   logginUserThunk,
-  /* updateFootballersThunk, */
+  logginWithTokenThunk,
 } from '../slice/thunks';
 import { Footballers } from '../model/footballers';
-import { logout, setCurrentFootballer } from '../slice/slice';
+import { setCurrentFootballer } from '../slice/slice';
 import { LoginUser, User } from '../model/user';
-/* import { Footballers } from '../model/footballers'; */
 
 export function useUsers() {
-  const { token } = useSelector((state: RootState) => {
-    state.userState;
-  });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { token } = useSelector((state: RootState) => state.userState);
+
   const dispacht = useDispatch<AppDispatch>();
   const repo = new ApiRepo();
+
   const makeLogOut = () => {
-    dispacht(logout());
+    dispacht(ac.logout());
   };
 
   const register = (newUser: Partial<User>) => {
@@ -28,7 +29,7 @@ export function useUsers() {
   };
 
   const loginWithToken = (token: string) => {
-    dispacht(loginTokenThunk({ token, repo }));
+    dispacht(logginWithTokenThunk({ token, repo }));
   };
 
   const login = (loginUser: LoginUser) => {
@@ -39,6 +40,7 @@ export function useUsers() {
     makeLogOut,
     login,
     register,
+    loginWithToken,
   };
 }
 

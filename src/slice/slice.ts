@@ -1,19 +1,11 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { loadFootballersThunk, logginUserThunk, updateFootballersThunk } from './thunks';
+import { loadFootballersThunk, updateFootballersThunk } from './thunks';
 import { Footballers } from '../model/footballers';
-import { User } from '../model/user';
-import { LoginResponse } from '../model/login.response';
 
 type FootballersState = {
   footballers: Footballers[];
   footballerInitialState: 'idle' | 'loading' | 'error';
   currentFootballer: Footballers | null;
-};
-
-type UserState = {
-  token: string;
-  loggingState: 'idle' | 'logged' | 'error';
-  loggedUser: User | null;
 };
 
 const initialState: FootballersState = {
@@ -23,44 +15,6 @@ const initialState: FootballersState = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const initialUserState: UserState = {
-  loggedUser: null,
-  loggingState: 'idle',
-  token: '',
-};
-
-const usersSlice = createSlice({
-  name: 'users',
-  initialUserState,
-  reducers: {
-
-    logout: (state: UserState) => {
-      state.loggedUser = null;
-      state.token = '';
-      return state;
-    },
-  },
-
-  extraReducers:(builder) => { 
-
-
-    builder.addCase(
-      logginUserThunk.fulfilled,
-      (state: UserState, { payload }: PayloadAction<LoginResponse>) => {
-        state.loggedUser = payload.user;
-        state.token = payload.token;
-      }
-    ),
-  
-
-      builder.addCase(
-      logginUserThunk.pending,
-      (state: UserState)
-      }
-    )
-  }
-
-};
 
 const footballersSlice = createSlice({
   name: 'footballer',
@@ -126,6 +80,5 @@ const footballersSlice = createSlice({
 });
 
 export default footballersSlice.reducer;
-usersSlice.reducer;
+
 export const { setCurrentFootballer } = footballersSlice.actions;
-export const {logout} = usersSlice.actions;

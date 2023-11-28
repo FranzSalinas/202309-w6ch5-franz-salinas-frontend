@@ -66,7 +66,7 @@ export class ApiRepo {
     return response.json();
   }
 
-  async loginWithToken(token: string): Promise<LoginResponse> {
+  async loginUserWithToken(token: string): Promise<LoginResponse> {
     const finalUrl = this.apiUrlUser + '/login';
     const response = await fetch(finalUrl, {
       method: 'PATCH',

@@ -34,13 +34,12 @@ export const logginUserThunk = createAsyncThunk<
   return await repo.loginUser(loginUser);
 });
 
-/* export const logginWithTokenThunk = createAsyncThunk<
+export const logginWithTokenThunk = createAsyncThunk<
   LoginResponse,
   {
-    loginUser: LoginUser;
+    token: string;
     repo: ApiRepo;
   }
->('loginWithToken', async ({ loginUser, repo }) => {
-  return await repo.loginUser(loginUser);
+>('loginWithToken', async ({ token, repo }) => {
+  return await repo.loginUserWithToken(token);
 });
- */
