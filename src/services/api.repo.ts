@@ -1,7 +1,8 @@
+import { serverUrl } from '../config';
 import { Footballers } from '../model/footballers';
 
 export class ApiRepo {
-  apiUrl = 'http://localhost:2700/footballers';
+  apiUrl = serverUrl + '/footballers';
 
   async getFootballers(): Promise<Footballers[]> {
     const response = await fetch(this.apiUrl);

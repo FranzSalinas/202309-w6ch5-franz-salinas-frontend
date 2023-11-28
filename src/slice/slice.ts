@@ -1,7 +1,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { loadFootballersThunk, updateFootballersThunk } from './thunks';
 import { Footballers } from '../model/footballers';
-import { User } from '../model/user';
+/* import { User } from '../model/user'; */
 
 type FootballersState = {
   footballers: Footballers[];
@@ -9,11 +9,11 @@ type FootballersState = {
   currentFootballer: Footballers | null;
 };
 
-type UserState = {
+/* type UserState = {
   user: User[];
   userInitialState: boolean;
   currentUser: User | null;
-};
+}; */
 
 const initialState: FootballersState = {
   footballers: [],
@@ -22,12 +22,12 @@ const initialState: FootballersState = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-const initialUserState: UserState = {
+/* const initialUserState: UserState = {
   user: [],
   userInitialState: false,
   currentUser: null,
 };
-
+ */
 const footballersSlice = createSlice({
   name: 'footballer',
   initialState,
