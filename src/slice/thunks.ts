@@ -1,6 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ApiRepo } from '../services/api.repo';
 import { Footballers } from '../model/footballers';
+import { LoginResponse } from '../model/login.response';
+import { LoginUser } from '../model/user';
 
 export const loadFootballersThunk = createAsyncThunk<Footballers[], ApiRepo>(
   'footballer/load',
@@ -20,4 +22,24 @@ export const updateFootballersThunk = createAsyncThunk<
 >('character/update', async ({ repo, id, updatedCharacter }) => {
   const finalCharacter = await repo.setFootballers(id, updatedCharacter);
   return finalCharacter;
+});
+
+export const logginUserThunk = createAsyncThunk<
+  LoginResponse,
+  {
+    loginUser: LoginUser;
+    repo: ApiRepo;
+  }
+>('login', async ({ loginUser, repo }) => {
+  return await repo.loginUser(loginUser);
+});
+
+export const logginWithTokenThunk = createAsyncThunk<
+  LoginResponse,
+  {
+    token: string;
+    repo: ApiRepo;
+  }
+>('loginWithToken', async ({ token, repo }) => {
+  return await repo.loginUserWithToken(token);
 });

@@ -14,6 +14,8 @@ const initialState: FootballersState = {
   currentFootballer: null,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 const footballersSlice = createSlice({
   name: 'footballer',
   initialState,
@@ -78,4 +80,5 @@ const footballersSlice = createSlice({
 });
 
 export default footballersSlice.reducer;
+
 export const { setCurrentFootballer } = footballersSlice.actions;

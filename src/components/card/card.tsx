@@ -20,7 +20,7 @@ export function Card({ info }: Props) {
       <div className="card character__card">
         <Link to={'/details/' + info.id}>
           <img
-            src={`${info.image}`}
+            src={`${info.imgFootballer.url}`}
             alt={info.name + ' '}
             onClick={() => handleDetailsPage(info)}
             className={`character__picture ${!info.age && 'card-img-top'}`}
