@@ -36,14 +36,6 @@ const usersSlice = createSlice({
         state.token = payload.token;
       }
     );
-
-    builder.addCase(
-      logginUserThunk.fulfilled,
-      (state: UserState, { payload }: PayloadAction<LoginResponse>) => {
-        state.loggedUser = payload.user;
-        state.token = payload.token;
-      }
-    );
   },
 });
 

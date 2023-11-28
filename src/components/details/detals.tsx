@@ -11,7 +11,7 @@ export function Details() {
       </div>
       <div className="image-container">
         <img
-          src={currentFootballer?.image}
+          src={currentFootballer?.imageFootballer.url}
           alt={currentFootballer?.name}
           height="300"
           width="200"
