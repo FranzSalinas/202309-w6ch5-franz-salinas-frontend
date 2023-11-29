@@ -3,6 +3,7 @@ import { ApiRepo } from '../services/api.repo';
 import { Footballers } from '../model/footballers';
 import { LoginResponse } from '../model/login.response';
 import { LoginUser } from '../model/user';
+import { Storage } from '../services/storage';
 
 export const loadFootballersThunk = createAsyncThunk<Footballers[], ApiRepo>(
   'footballer/load',
@@ -29,9 +30,13 @@ export const logginUserThunk = createAsyncThunk<
   {
     loginUser: LoginUser;
     repo: ApiRepo;
+    userStorage: Storage<{ token: string }>;
   }
->('login', async ({ loginUser, repo }) => {
-  return await repo.loginUser(loginUser);
+>('login', async ({ loginUser, repo, userStorage }) => {
+  const loginResponse = await repo.loginUser(loginUser);
+  userStorage.set({ token: loginResponse.token });
+
+  return loginResponse;
 });
 
 export const logginWithTokenThunk = createAsyncThunk<

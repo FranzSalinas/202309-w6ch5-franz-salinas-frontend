@@ -12,29 +12,34 @@ import {
 import { Footballers } from '../model/footballers';
 import { setCurrentFootballer } from '../slice/slice';
 import { LoginUser, User } from '../model/user';
+import { Storage } from '../services/storage';
 
 export function useUsers() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { token } = useSelector((state: RootState) => state.userState);
-  console.log(token);
 
   const dispacht = useDispatch<AppDispatch>();
   const repo = new ApiRepo();
+  const userStorage = new Storage<{ token: string }>('user');
 
   const makeLogOut = () => {
     dispacht(ac.logout());
+    userStorage.remove();
   };
 
-  const register = (newUser: Partial<User>) => {
+  const register = (newUser: FormData) => {
     repo.registerUser(newUser);
   };
 
-  const loginWithToken = (token: string) => {
-    dispacht(logginWithTokenThunk({ token, repo }));
+  const loginWithToken = () => {
+    const userStoreData = userStorage.get();
+    if (userStoreData) {
+      const token = userStoreData.token;
+      dispacht(logginWithTokenThunk({ token, repo, userStorage }));
+    }
   };
 
   const login = (loginUser: LoginUser) => {
-    dispacht(logginUserThunk({ loginUser, repo }));
+    dispacht(logginUserThunk({ loginUser, repo, userStorage }));
   };
 
   return {

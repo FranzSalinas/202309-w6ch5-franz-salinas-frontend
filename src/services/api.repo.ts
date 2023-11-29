@@ -38,14 +38,11 @@ export class ApiRepo {
     return response.json();
   }
 
-  async registerUser(newUser: Partial<User>): Promise<User> {
+  async registerUser(newUser: FormData): Promise<User> {
     const finalUrl = this.apiUrlUser + '/register';
     const response = await fetch(finalUrl, {
       method: 'PATCH',
-      body: JSON.stringify(newUser),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      body: newUser,
     });
     if (!response.ok)
       throw new Error(response.status + ' ' + response.statusText);
