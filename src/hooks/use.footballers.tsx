@@ -1,3 +1,11 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../store/store';
+import { useCallback, useMemo } from 'react';
+import { ApiRepo } from '../services/api.repo';
+import { loadFootballersThunk } from '../slice/thunks';
+import { Footballers } from '../model/footballers';
+import { setCurrentFootballer } from '../slice/slice';
+
 export function useFootballers() {
   const { footballers } = useSelector(
     (state: RootState) => state.footballersState

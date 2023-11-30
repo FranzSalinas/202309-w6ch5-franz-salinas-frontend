@@ -1,47 +1,29 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { useUsers } from '../../hooks/use.characters';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export function UserButtons() {
-
-  const [modalRegister, setModalOpen] = useState(false)
-  const [modalLogin, setModalLogin] = useState(false)
   const { loggedUser } = useSelector((state: RootState) => state.userState);
-  const { makeLogOut } = useUsers();
-  
-  const register = () => {
-    setModalOpen(true)
-    console.log(modalRegister)
-  }
 
   return (
-  
-      <section>
-        {!loggedUser && (
-        
-  
+    <section>
+      {!loggedUser && (
         <>
-        <button onClick={()=> setModalLogin(true)}>Login</button>
-            <button onClick={()=> setModalOpen(true)}>Register</button> }
-          </>
-        )
+          <Link to={'/login'}>
+            <button>Login</button>
+          </Link>
+          <Link to={'/register'}>
+            <button>Register</button>
+          </Link>
+        </>
+      )}
 
-        {loggedUser && (
-          <>
-            <button onClick={makeLogOut}>Logout</button>
-            <p>Hola {loggedUser.name}</p>
-          </>
-        )}
-
-        <dialog open = {modalRegister}>
-          <h2>Register</h2>
-          
-
-        </dialog>
-
-      </section>
-    
+      {loggedUser && (
+        <>
+          <button>Logout</button>
+          <p>Hola {loggedUser.name}</p>
+        </>
+      )}
+    </section>
   );
 }
-

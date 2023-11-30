@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+/* import { SyntheticEvent } from 'react';
 import { useUsers } from '../../hooks/use.characters';
 
 type Props = {
@@ -33,3 +33,4 @@ export function Register() {
     </>
   );
 }
+ */

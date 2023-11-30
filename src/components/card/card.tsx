@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useFootballers } from '../../hooks/use.characters';
+import { useFootballers } from '../../hooks/use.footballers';
 import { Footballers } from '../../model/footballers';
 
 type Props = {

@@ -2,10 +2,11 @@ import { useEffect } from 'react';
 
 import { Card } from '../card/card';
 
-import { useFootballers } from '../../hooks/use.characters';
+import { useFootballers } from '../../hooks/use.footballers';
 
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
+import { Footballers } from '../../model/footballers';
 
 export function List() {
   const { loadFootballers, footballers } = useFootballers();
@@ -29,7 +30,7 @@ export function List() {
     <>
       {footballers.length > 0 && (
         <ul className="characters-list row list-unstyled">
-          {footballers.map((item) => (
+          {footballers.map((item: Footballers) => (
             <Card info={item} key={item.id}></Card>
           ))}
         </ul>
