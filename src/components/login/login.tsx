@@ -9,7 +9,7 @@ export function Login() {
     event.preventDefault();
     const formElement = event.target as HTMLFormElement;
     const formData = new FormData(formElement);
-    const loginData: LoginUser = {
+    loginData = {
       userName = formData.get('userName')?.toString() as string,
       password = formData.get('password')?.toString() as string,
     };

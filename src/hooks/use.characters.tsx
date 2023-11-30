@@ -11,7 +11,7 @@ import {
 } from '../slice/thunks';
 import { Footballers } from '../model/footballers';
 import { setCurrentFootballer } from '../slice/slice';
-import { LoginUser, User } from '../model/user';
+import { LoginUser } from '../model/user';
 import { Storage } from '../services/storage';
 
 export function useUsers() {
@@ -19,27 +19,28 @@ export function useUsers() {
 
   const dispacht = useDispatch<AppDispatch>();
   const repo = new ApiRepo();
-  const userStorage = new Storage<{ token: string }>('user');
+  const userStore = new Storage<{ token: string }>('users');
 
   const makeLogOut = () => {
     dispacht(ac.logout());
-    userStorage.remove();
+    userStore.remove();
   };
 
   const register = (newUser: FormData) => {
     repo.registerUser(newUser);
   };
 
-  const loginWithToken = () => {
-    const userStoreData = userStorage.get();
-    if (userStoreData) {
-      const token = userStoreData.token;
-      dispacht(logginWithTokenThunk({ token, repo, userStorage }));
-    }
+  const login = (loginUser: LoginUser) => {
+    dispacht(logginUserThunk({ loginUser, repo, userStore: userStore }));
   };
 
-  const login = (loginUser: LoginUser) => {
-    dispacht(logginUserThunk({ loginUser, repo, userStorage }));
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const loginWithToken = () => {
+    const userStoreData = userStore.get();
+    if (userStoreData) {
+      const token = userStoreData.token;
+      dispacht(logginWithTokenThunk({ token, repo, userStore: userStore }));
+    }
   };
 
   return {

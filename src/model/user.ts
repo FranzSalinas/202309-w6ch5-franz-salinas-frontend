@@ -13,4 +13,6 @@ export type User = LoginUser & {
   age: number;
   avatar: ImgData;
   footballers: Footballers[];
+  role: 'Admin';
+  Users;
 };

@@ -3,7 +3,7 @@ export class Storage<T> {
   get() {
     const initialData = localStorage.getItem(this.storeName);
     if (!initialData) return null;
-    return JSON.parse(initialData) as T[];
+    return JSON.parse(initialData) as T;
   }
 
   set(data: T) {

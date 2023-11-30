@@ -36,6 +36,9 @@ const usersSlice = createSlice({
         state.token = payload.token;
       }
     );
+    builder.addCase(logginUserThunk.pending, (state: UserState) => {
+      state.loggingState = 'logged';
+    });
   },
 });
 
