@@ -14,7 +14,7 @@ describe('Given usersReducer', () => {
 
   describe(' When users/login/pending action is dispacth  ', () => {
     test('Then the new state will be returned ', () => {
-      const action = { type: 'logginUserThunk/pending' };
+      const action = { type: 'logginUserThunk.pending.type' };
       const state: UserState = {} as UserState;
       const result = usersReducer(state, action);
       expect(result.loggingState).toBe('logged');
