@@ -13,9 +13,6 @@ export function Card({ info }: Props) {
     update(id, { isAlive: false });
   }; */
 
-  const userImage = 
-
-
   const { handleDetailsPage } = useFootballers();
   console.log('IMG', info);
   return (

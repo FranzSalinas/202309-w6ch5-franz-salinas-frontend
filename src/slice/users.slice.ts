@@ -5,7 +5,7 @@ import { LoginResponse } from '../model/login.response';
 
 type LoginState = 'idle' | 'logged' | 'error';
 
-type UserState = {
+export type UserState = {
   token: string;
   loggingState: LoginState;
   loggedUser: User | null;
